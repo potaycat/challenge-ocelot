@@ -13,10 +13,10 @@ from .models import Book
 class BookListCreateAPIView(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = serializers.BookSerializer
-    # permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
-class BookDetailAPIView(generics.RetrieveUpdateAPIView):
+class BookDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = serializers.BookSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
