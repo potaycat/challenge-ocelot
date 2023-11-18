@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,8 +85,16 @@ WSGI_APPLICATION = "ocelot.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "djongo",
+        "CLIENT": {
+            "host": f"mongodb+srv://{os.getenv('MONGO_USERNAME')}:{os.getenv('MONGO_PASSWORD')}@{os.getenv('MONGO_HOST')}/?retryWrites=true&w=majority",
+            "username": os.getenv("MONGO_USERNAME"),
+            "password": os.getenv("MONGO_PASSWORD"),
+            "name": os.getenv("MONGO_DB_NAME"),
+            "authMechanism": "SCRAM-SHA-1",  # Add this line if you are using Mongo Atlas Cloud DB
+        },
+        "NAME": os.getenv("MONGO_DB_NAME"),
+        "HOST": os.getenv("MONGO_HOST"),
     }
 }
 
