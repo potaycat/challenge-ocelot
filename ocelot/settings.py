@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-%c$s1+op#o#nnu64z8s5y@^(6g03_$)cd+jai(l-p%+llmk08w"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.getenv("DEBUG"))
 
 ALLOWED_HOSTS = []
 
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "drf_yasg",
     # MY APPS
-    "books",
+    "apps.books",
 ]
 
 MIDDLEWARE = [
@@ -79,6 +79,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "ocelot.wsgi.application"
+ASGI_APPLICATION = "ocelot.asgi.application"
 
 
 # Database
@@ -88,11 +89,11 @@ DATABASES = {
     "default": {
         "ENGINE": "djongo",
         "CLIENT": {
-            "host": f"mongodb+srv://{os.getenv('MONGO_USERNAME')}:{os.getenv('MONGO_PASSWORD')}@{os.getenv('MONGO_HOST')}/?retryWrites=true&w=majority",
-            "username": os.getenv("MONGO_USERNAME"),
-            "password": os.getenv("MONGO_PASSWORD"),
+            "host": f"mongodb://{os.getenv('MONGO_HOST')}/?retryWrites=true&w=majority",
             "name": os.getenv("MONGO_DB_NAME"),
-            "authMechanism": "SCRAM-SHA-1",  # Add this line if you are using Mongo Atlas Cloud DB
+            # "username": os.getenv("MONGO_USERNAME"),
+            # "password": os.getenv("MONGO_PASSWORD"),
+            # "authMechanism": "SCRAM-SHA-1",  # Add this line if you are using Mongo Atlas Cloud DB
         },
         "NAME": os.getenv("MONGO_DB_NAME"),
         "HOST": os.getenv("MONGO_HOST"),
@@ -150,14 +151,14 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
     ],
-    'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle'
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
     ],
-    'DEFAULT_THROTTLE_RATES': {
-        'anon': '1000/day',
-        'user': '1000000/day'
-    }
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "1000/day",
+        "user": "10000/day",
+    },
 }
 
 CORS_ORIGIN_ALLOW_ALL = True

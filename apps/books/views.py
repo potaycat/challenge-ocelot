@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from django.http import Http404
 from . import serializers
 from .models import Book
+from bson.objectid import ObjectId
 
 
 class BookListCreateAPIView(generics.ListCreateAPIView):
@@ -23,6 +25,12 @@ class BookListCreateAPIView(generics.ListCreateAPIView):
 
 
 class BookDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Book.objects.all()
     serializer_class = serializers.BookSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    def get_object(self):
+        qs = Book.objects.filter(_id=ObjectId(self.kwargs["pk"]))
+        if qs:
+            return qs[0]
+        else:
+            raise Http404

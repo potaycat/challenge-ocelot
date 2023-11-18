@@ -3,12 +3,10 @@ from .models import Book
 
 
 class BookSerializer(serializers.ModelSerializer):
-    id = serializers.CharField(read_only=True)
-
     class Meta:
         model = Book
         fields = (
-            "id",
+            "_id",
             "title",
             "author",
             "publish_date",

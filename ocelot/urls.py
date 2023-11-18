@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.authtoken import views
+from rest_framework.authtoken.views import obtain_auth_token
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -41,7 +40,8 @@ urlpatterns = [
     ),
     path("admin/", admin.site.urls),
     path("api/v1/auth/", include("rest_framework.urls")),
-    path("api/v1/auth/token", views.obtain_auth_token),
-    path("api/v1/books/", include("books.urls")),
-    path("api/v1/users/", include("users.urls")),
+    path("api/v1/auth/token", obtain_auth_token),
+    path("api/v1/books/", include("apps.books.urls")),
+    path("api/v1/users/", include("apps.users.urls")),
+    path("api/v1/fast/", include("apps.fast.urls")),
 ]
