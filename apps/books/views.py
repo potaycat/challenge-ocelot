@@ -25,6 +25,7 @@ class BookListCreateAPIView(generics.ListCreateAPIView):
 
 
 class BookDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
     serializer_class = serializers.BookSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
 

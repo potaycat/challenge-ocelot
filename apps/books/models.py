@@ -10,3 +10,4 @@ class Book(models.Model):
     publish_date = models.DateField()
     isbn = models.CharField(max_length=13)
     price = models.FloatField()
+    cover = models.CharField(max_length=200, default=None)

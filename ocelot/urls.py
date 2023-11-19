@@ -43,5 +43,6 @@ urlpatterns = [
     path("api/v1/auth/token", obtain_auth_token),
     path("api/v1/books/", include("apps.books.urls")),
     path("api/v1/users/", include("apps.users.urls")),
+    path("api/v1/storage/", include("apps.s3upload.urls")),
     path("api/v1/fast/", include("apps.fast.urls")),
 ]

@@ -39,6 +39,11 @@ def speedy_book_create(request):
 @permission_classes((permissions.AllowAny,))
 def speedy_book_detail(request, pk):
     collection = db["books_book"]
-    obj = collection.find({"_id": ObjectId(pk)})[0]
+    obj = collection.find({"_id": ObjectId(pk)})
+    try:
+        obj = obj[0]
+    except Exception as e:
+        print(e)
+        return Response({"message": "Not found."}, status=404)
     obj["_id"] = str(obj["_id"])
     return Response({"data": obj}, status=200)
