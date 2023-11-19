@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     "drf_yasg",
     # MY APPS
     "apps.books",
+    "apps.users",
+    "apps.s3upload",
 ]
 
 MIDDLEWARE = [

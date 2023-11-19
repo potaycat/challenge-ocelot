@@ -13,7 +13,8 @@ from bson.objectid import ObjectId
 
 
 db = MongoClient(
-    f"mongodb://{os.getenv('MONGO_USERNAME')}:{os.getenv('MONGO_PASSWORD')}@{os.getenv('MONGO_HOST')}/?retryWrites=true&w=majority"
+    f"mongodb+srv://{os.getenv('MONGO_USERNAME')}:{os.getenv('MONGO_PASSWORD')}@{os.getenv('MONGO_HOST')}/?retryWrites=true&w=majority",
+    maxPoolSize=1000,
 )[os.getenv("MONGO_DB_NAME")]
 print(db.command("dbstats"))
 
