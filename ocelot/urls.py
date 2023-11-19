@@ -40,7 +40,7 @@ urlpatterns = [
     ),
     path("admin/", admin.site.urls),
     path("api/v1/auth/", include("rest_framework.urls")),
-    path("api/v1/auth/token", obtain_auth_token),
+    path("api/v1/auth/token", obtain_auth_token, name="auth-token"),
     path("api/v1/books/", include("apps.books.urls")),
     path("api/v1/users/", include("apps.users.urls")),
     path("api/v1/storage/", include("apps.s3upload.urls")),

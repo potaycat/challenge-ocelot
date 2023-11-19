@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
     def validate_email(self, attr):
-        if re.fullmatch(regex, attr):
+        if re.fullmatch(email_regex, attr):
             return attr
         else:
             raise Exception("Invalid email format.")

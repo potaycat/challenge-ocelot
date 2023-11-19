@@ -1,6 +1,6 @@
-## Simple bookstore
+## Simple Bookstore
 
-Made for the coding challenge.
+Hi! The Bookstore API is made for the coding challenge.
 
 
 ## Setting up and running locally
@@ -26,6 +26,8 @@ Install `flyctl` to deploy the app to Fly.io
 ```sh
 flyctl deploy
 ```
+Curently deployed and live at https://challenge-ocelot--longnh.fly.dev/
+
 
 
 ## API functionalities
@@ -34,3 +36,6 @@ flyctl deploy
 - User account creation, authentication
 - S3 upload for images
 - A faster endpoint
+
+## API specification
+https://challenge-ocelot--longnh.fly.dev/swagger/

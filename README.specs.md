@@ -26,7 +26,7 @@ Develop a RESTful API using Django or FastAPI framework that manages a simple "B
 
 ### Testing:
 
-- Write unit tests for your models and endpoints.
+- Write unit tests for your models and endpoints. ✅
 - Include API tests to demonstrate how each endpoint works. ✅
 
 ### System Diagram:
@@ -35,8 +35,8 @@ Develop a RESTful API using Django or FastAPI framework that manages a simple "B
 
 ### Deployment:
 
-- Deploy your application to a free hosting provider (e.g., Heroku, PythonAnywhere, or any other).
-- Provide a URL to the live API.
+- Deploy your application to a free hosting provider (e.g., Heroku, PythonAnywhere, or any other). ✅
+- Provide a URL to the live API. ✅
 
 ### Bonus (optional):
 
@@ -44,7 +44,7 @@ Develop a RESTful API using Django or FastAPI framework that manages a simple "B
 - Can upload an image with the book cover. ✅
 - Implement rate limiting for your API. ✅
 - Add filters to list endpoints, such as filtering books by author or publish_date. ✅
-- Setup CI/CD
+- Setup CI/CD ✅
 
 ### Submission:
 
