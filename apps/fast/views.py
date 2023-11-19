@@ -12,7 +12,9 @@ import os
 from bson.objectid import ObjectId
 
 
-db = MongoClient("mongodb://localhost:27017/")["challenge-ocelot"]
+db = MongoClient(
+    f"mongodb://{os.getenv('MONGO_USERNAME')}:{os.getenv('MONGO_PASSWORD')}@{os.getenv('MONGO_HOST')}/?retryWrites=true&w=majority"
+)[os.getenv("MONGO_DB_NAME")]
 print(db.command("dbstats"))
 
 

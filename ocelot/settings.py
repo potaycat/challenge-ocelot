@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-%c$s1+op#o#nnu64z8s5y@^(6g03_$)cd+jai(l-p%+llmk08w"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.getenv("DEBUG"))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".fly.dev"]
 
 
 # Application definition
@@ -89,11 +89,11 @@ DATABASES = {
     "default": {
         "ENGINE": "djongo",
         "CLIENT": {
-            "host": f"mongodb://{os.getenv('MONGO_HOST')}/?retryWrites=true&w=majority",
+            "host": f"mongodb+srv://{os.getenv('MONGO_USERNAME')}:{os.getenv('MONGO_PASSWORD')}@{os.getenv('MONGO_HOST')}/?retryWrites=true&w=majority",
             "name": os.getenv("MONGO_DB_NAME"),
-            # "username": os.getenv("MONGO_USERNAME"),
-            # "password": os.getenv("MONGO_PASSWORD"),
-            # "authMechanism": "SCRAM-SHA-1",  # Add this line if you are using Mongo Atlas Cloud DB
+            "username": os.getenv("MONGO_USERNAME"),
+            "password": os.getenv("MONGO_PASSWORD"),
+            "authMechanism": "SCRAM-SHA-1",  # Add this line if you are using Mongo Atlas Cloud DB
         },
         "NAME": os.getenv("MONGO_DB_NAME"),
         "HOST": os.getenv("MONGO_HOST"),
@@ -162,4 +162,4 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = ("http://127.0.0.1:8000",)
+CORS_ORIGIN_WHITELIST = ("http://127.0.0.1:8000", "https://*.fly.dev")
