@@ -18,6 +18,11 @@ s3 = boto3.client(
 
 
 class CreatePresignedS3UrlAPIView(APIView):
+    """
+    Generate a presigned URL for book cover image upload.
+    Uploaded image link is expected to append to book create request.
+    """
+
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):

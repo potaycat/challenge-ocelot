@@ -1,6 +1,6 @@
 ## Simple Bookstore
 
-Hi! The Bookstore API is made for the coding challenge.
+The Bookstore API is made according to [specifications](README.specs.md).
 
 
 ## Setting up and running locally
@@ -11,7 +11,9 @@ python -m venv venv
 ./venv/bin/activate
 ```
 
-Install dependancies, Initialize DB:
+Create the `.env` file from `.env.example` template.
+
+Install dependencies, Initialize DB:
 ```sh
 pip install -r ./requirements.txt
 python ./manage.py migrate
@@ -23,20 +25,29 @@ python ./manage.py runserver
 ```
 
 ## Pack and deploy
+Test the app. Test are defined in every `test.py` files.
+```sh
+python ./manage.py test
+```
 Install `flyctl` to deploy the app to Fly.io
 ```sh
 flyctl deploy
 ```
-Curently deployed and live at https://challenge-ocelot--longnh.fly.dev/
+Curently live at https://challenge-ocelot--longnh.fly.dev/
 
+### CI/CD
+Github Actions is set up for testing
 
 
 ## API functionalities
 
 - CRUD operations for Books
 - User account creation, authentication
-- S3 upload for images
+- Pre-signed image upload URL for Book covers
 - A faster endpoint
 
 ## API specification
 https://challenge-ocelot--longnh.fly.dev/swagger/
+
+## System diagram
+![system diagram](system_diagram.png)

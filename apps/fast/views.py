@@ -21,7 +21,7 @@ print(db.command("dbstats"))
 @throttle_classes(())
 @permission_classes((permissions.IsAdminUser,))
 def speedy_book_create(request):
-    """A trade-off between speed and security."""
+    """A trade-off between speed and security. Should function the same."""
     d = request.data
     result = db["books_book"].insert_one(
         {

@@ -31,7 +31,7 @@ Develop a RESTful API using Django or FastAPI framework that manages a simple "B
 
 ### System Diagram:
 
-- Provide a system architecture diagram showing the API, database, and any other components of your system.
+- Provide a system architecture diagram showing the API, database, and any other components of your system. ✅
 
 ### Deployment:
 
@@ -48,9 +48,9 @@ Develop a RESTful API using Django or FastAPI framework that manages a simple "B
 
 ### Submission:
 
-- Submit your code in a version-controlled repository (e.g., GitHub).
-- Provide the system diagram as part of your repository.
-- Include a Postman collection or an OpenAPI specification file to interact with the API.
+- Submit your code in a version-controlled repository (e.g., GitHub). ✅ https://github.com/potaycat/challenge-ocelot
+- Provide the system diagram as part of your repository. ✅
+- Include a Postman collection or an OpenAPI specification file to interact with the API. ✅
 - The documentation should be comprehensive and clear, suitable for new developers who are not familiar with your project.
 
 ### Evaluation Criteria:

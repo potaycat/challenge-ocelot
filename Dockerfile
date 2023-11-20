@@ -12,10 +12,10 @@ WORKDIR /code
 COPY requirements.txt /tmp/requirements.txt
 RUN set -ex && \
     pip install --upgrade pip && \
-    pip install -r /tmp/requirements.txt && \
+    pip install -r /tmp/requirements.txt uvicorn && \
     rm -rf /root/.cache/
 COPY . /code
 
 EXPOSE 8000
 
-CMD ["gunicorn", "--worker-class", "uvicorn.workers.UvicornWorker" "--bind", ":8000", "--workers", "2", "ocelot.asgi"]
+CMD ["gunicorn", "--worker-class=uvicorn.workers.UvicornWorker", "--bind=:8000", "--workers=2", "ocelot.asgi"]
