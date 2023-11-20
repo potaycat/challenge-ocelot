@@ -11,12 +11,13 @@ python -m venv venv
 ./venv/bin/activate
 ```
 
-Install dependancies:
+Install dependancies, Initialize DB:
 ```sh
 pip install -r ./requirements.txt
+python ./manage.py migrate
 ```
 
-No database migration needed. Start the project:
+Start the project:
 ```sh
 python ./manage.py runserver
 ```

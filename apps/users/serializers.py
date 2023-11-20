@@ -7,6 +7,7 @@ email_regex = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b"
 
 
 class UserSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(read_only=True)
     password = serializers.CharField(write_only=True)
 
     def validate_email(self, attr):

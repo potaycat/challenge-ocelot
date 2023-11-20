@@ -40,7 +40,7 @@ Develop a RESTful API using Django or FastAPI framework that manages a simple "B
 
 ### Bonus (optional):
 
-- The API needs to support a volume of 1000 requests per second in a stress test in both write and read operations. ❌
+- The API needs to support a volume of 1000 requests per second in a stress test in both write and read operations. ❌ on my machine: 500 writes/s - 2000 reads/s
 - Can upload an image with the book cover. ✅
 - Implement rate limiting for your API. ✅
 - Add filters to list endpoints, such as filtering books by author or publish_date. ✅

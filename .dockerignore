@@ -3,3 +3,5 @@ fly.toml
 *.sqlite3
 __pycache__/
 venv/
+.venv/
+*.ipynb

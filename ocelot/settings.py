@@ -57,9 +57,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # CORS
     "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "ocelot.urls"
@@ -80,7 +79,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "ocelot.wsgi.application"
 ASGI_APPLICATION = "ocelot.asgi.application"
 
 
@@ -91,7 +89,7 @@ DATABASES = {
     "default": {
         "ENGINE": "djongo",
         "CLIENT": {
-            "host": f"mongodb+srv://{os.getenv('MONGO_USERNAME')}:{os.getenv('MONGO_PASSWORD')}@{os.getenv('MONGO_HOST')}/?retryWrites=true&w=majority",
+            "host": os.getenv("MONGO_URI"),
             "name": os.getenv("MONGO_DB_NAME"),
             "username": os.getenv("MONGO_USERNAME"),
             "password": os.getenv("MONGO_PASSWORD"),
@@ -158,10 +156,15 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.UserRateThrottle",
     ],
     "DEFAULT_THROTTLE_RATES": {
-        "anon": "1000/day",
-        "user": "10000/day",
+        "anon": "100/minute",
+        "user": "100/second",
     },
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = ("http://127.0.0.1:8000", "https://*.fly.dev")
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"  # <-- Updated!
+)

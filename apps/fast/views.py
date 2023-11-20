@@ -4,18 +4,16 @@ from rest_framework.decorators import (
     parser_classes,
     permission_classes,
 )
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_headers
 from rest_framework.response import Response
 from rest_framework import permissions
-from rest_framework.parsers import BaseParser
 from pymongo import MongoClient
 import os
 from bson.objectid import ObjectId
 
 
-db = MongoClient(
-    f"mongodb+srv://{os.getenv('MONGO_USERNAME')}:{os.getenv('MONGO_PASSWORD')}@{os.getenv('MONGO_HOST')}/?retryWrites=true&w=majority",
-    maxPoolSize=1000,
-)[os.getenv("MONGO_DB_NAME")]
+db = MongoClient(os.getenv("MONGO_URI"), maxPoolSize=100)[os.getenv("MONGO_DB_NAME")]
 print(db.command("dbstats"))
 
 
@@ -37,6 +35,8 @@ def speedy_book_create(request):
     return Response({"inserted_id": str(result.inserted_id)}, status=201)
 
 
+@cache_page(600)
+@vary_on_headers()
 @api_view(("GET",))
 @throttle_classes(())
 @permission_classes((permissions.AllowAny,))
