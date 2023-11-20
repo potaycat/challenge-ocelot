@@ -25,7 +25,7 @@ python ./manage.py runserver
 ```
 
 ## Pack and deploy
-Test the app. Test are defined in every `test.py` files.
+Test the app. Tests are defined in every `test.py` files.
 ```sh
 python ./manage.py test
 ```
@@ -48,6 +48,8 @@ Github Actions is set up for testing
 
 ## API specification
 https://challenge-ocelot--longnh.fly.dev/swagger/
+
+Demo: [jupyternotebook](Test_endpoints.ipynb)
 
 ## System diagram
 ![system diagram](system_diagram.png)
